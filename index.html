@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моё портфолио | Frontend-разработка</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #fff9fb;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, #ffd6f4, #f8b3e8);
+            color: #5a2d50;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(218, 155, 204, 0.2);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            animation: fadeIn 1s ease-in-out;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        
+        /* Навигация */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(218, 155, 204, 0.15);
+            backdrop-filter: blur(5px);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #7a3b6d;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background: #f8b3e8;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Основной контент */
+        section {
+            padding: 4rem 0;
+        }
+        
+        section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.3rem;
+            color: #9a4b88;
+            position: relative;
+        }
+        
+        section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #f8b3e8;
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        
+        /* Обо мне */
+        .about {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 15px rgba(218, 155, 204, 0.1);
+            margin-bottom: 2rem;
+            border: 1px solid #ffebf7;
+            
+        }
+        
+        .about p {
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        /* Проекты */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(218, 155, 204, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #ffebf7;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(218, 155, 204, 0.2);
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #ffebf7;
+        }
+        
+        /* Стили для изображений проектов */
+        .project-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #ffebf7;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image {
+         transform: scale(1.03);
+        }
+
+        /* Адаптивность для мобильных */
+        @media (max-width: 768px) {
+    .project-image {
+        height: 180px;
+    }
+        }
+
+        .project-info {
+            padding: 1.8rem;
+        }
+        
+        .project-info h3 {
+            margin-bottom: 0.8rem;
+            color: #7a3b6d;
+            font-size: 1.3rem;
+        }
+        
+        .project-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .project-info strong {
+            color: #9a4b88;
+        }
+        
+        /* Контакты */
+        .contact-form {
+            max-width: 650px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(218, 155, 204, 0.1);
+            border: 1px solid #ffebf7;
+        }
+        
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            color: #7a3b6d;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid #ffd6f4;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+            background-color: #fff9fb;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #f8b3e8;
+            box-shadow: 0 0 0 3px rgba(248, 179, 232, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 160px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #f8b3e8, #da9bcc);
+            color: white;
+            border: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(218, 155, 204, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(218, 155, 204, 0.4);
+            background: linear-gradient(135deg, #ffc2f0, #e8a8d8);
+        }
+        
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(218, 155, 204, 0.3);
+            border: 1px solid #ffebf7;
+            animation: modalFadeIn 0.4s ease-out;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #da9bcc;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: #9a4b88;
+        }
+        
+        /* Футер */
+        footer {
+            background: linear-gradient(135deg, #f8b3e8, #da9bcc);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-top: 3rem;
+        }
+        
+        footer p {
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .projects {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <h1>Привет, меня зовут Софья!</h1>
+            <p>Frontend-разработчик | Студент университета НИТУ МИСИС</p>
+        </div>
+    </header>
+    
+    <!-- Навигация -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#experience">Опыт</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+ <!-- Основной контент -->
+<main class="container">
+    <!-- Обо мне -->
+    <section id="about">
+        <h2>Обо мне</h2>
+        <div class="about">
+            <p>
+                Я студентка университета НИТУ МИСИС, учусь на втором курсе специальности 
+                "Информационные системы и технологии". В программирование я попала ещё 
+                в старшей школе, когда увлеклась созданием первых веб-страниц. Постепенно 
+                простые проекты переросли в более сложные, что и определило мой дальнейший 
+                профессиональный путь.
+            </p>
+            <br>
+            <p>
+                Сейчас я активно осваиваю современные технологии и инструменты фронтенд-разработки, 
+                уделяя этому всё свободное время. Особый интерес для меня представляют создание 
+                интуитивно понятных интерфейсов и решение сложных UX-задач.
+            </p>
+            <br>
+            <p>
+                За последний год я приняла участие в нескольких хакатонах, включая ЛЦТ, 
+                МТС True Tech и IT Purple Hack. Наибольшее впечатление оставил проект 
+                "Сервис для проектирования зданий на заданной территории" - в нём я 
+                получила ценный опыт работы с React, освоила принципы адаптивного дизайна 
+                и научилась эффективно взаимодействовать с API.
+            </p>
+        </div>
+    </section>
+        
+        <!-- Проекты -->
+<section id="projects">
+    <h2>Мои проекты</h2>
+    <div class="projects">
+        <!-- Проект 1 -->
+        <div class="project-card">
+            <img src="photo/Игра.png" alt="Игра Крестики-нолики" class="project-image">
+            <div class="project-info">
+                <h3>Игра на JavaScript</h3>
+                <p>Крестики-нолики с интерактивным интерфейсом.</p>
+                <p><strong>Технологии:</strong> HTML, CSS, JS</p>
+            </div>
+        </div>
+        
+        <!-- Проект 2 -->
+        <div class="project-card">
+            <img src="photo/ToDo.png" alt="To-Do List" class="project-image">
+            <div class="project-info">
+                <h3>To-Do List</h3>
+                <p>Приложение для управления задачами с сохранением в localStorage.</p>
+                <p><strong>Технологии:</strong> React, CSS</p>
+            </div>
+        </div>
+        
+        <!-- Проект 3 -->
+        <div class="project-card">
+            <img src="photo/Погода.png" alt="Погодное приложение" class="project-image">
+            <div class="project-info">
+                <h3>Погодное приложение</h3>
+                <p>Приложение для просмотра погоды через API OpenWeatherMap.</p>
+                <p><strong>Технологии:</strong> JavaScript, API</p>
+            </div>
+        </div>
+    </div>
+</section>
+        
+        <!-- Опыт -->
+        <section id="experience">
+            <h2>Опыт и активность</h2>
+            <div class="about">
+                <ul>
+                    <li>Участие в хакатоне ЛЦТ, 2024.</li>
+                    <li>Учебные проекты в университете: Разработка и реализация алгоритма решения минимаксной задачи размещения объектов в рамках теории случайных сетей.</li>
+                    <li>Курс по веб-разработке от Иннополиса.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Контакты -->
+        <section id="contact">
+            <h2>Свяжитесь со мной</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit">Отправить</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Модальное окно -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Спасибо!</h3>
+            <p>Ваше сообщение отправлено. Я свяжусь с вами в ближайшее время.</p>
+        </div>
+    </div>
+    
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025. Все права защищены.</p>
+        </div>
+    </footer>
+    
+    <!-- Скрипты -->
+    <script>
+        // Плавный скролл
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Модальное окно
+        const contactForm = document.getElementById('contactForm');
+        const modal = document.getElementById('successModal');
+        const closeModal = document.querySelector('.close-modal');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            modal.style.display = 'flex';
+            contactForm.reset();
+        });
+        
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
